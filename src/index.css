@@ -1,0 +1,40 @@
+
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: linear-gradient(to right, #0A2947, beige);
+  animation: gradient 10s ease infinite;
+}
+@keyframes gradient {
+  0%{
+  background: linear-gradient(45deg, #0A2947, beige);
+
+  }
+  50%{
+  background: linear-gradient(135deg, #0A2947, beige);
+
+  }
+  100%{
+  background: linear-gradient(225deg, #0A2947, beige);
+
+  }
+
+  
+}
+
+
+
+
+

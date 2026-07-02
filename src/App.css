@@ -1,0 +1,12 @@
+.homediv{
+    animation: move 5s ease infinite;
+}
+@keyframes move {
+    0%,100%{
+        margin-top: 50px;
+    }
+    50%{
+        margin-top: 100px;
+    }
+    
+}
