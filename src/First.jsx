@@ -1,5 +1,7 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addtowish ,Remove} from "./redux/wishlist";
 
 // import { IoStarSharp } from "react-icons/io5";
 
@@ -23,60 +25,106 @@ export default function ProductsListings(){
     // console.log(totalCount)
 
     let no_of_pages=Math.ceil(totalCount/PAGE_SIZE)
-    console.log(no_of_pages)
+    // console.log(no_of_pages)
 
     let start=current*PAGE_SIZE;
     let end=start+PAGE_SIZE
-    return(
-        <>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",flexDirection:"column",gap:"30px"}}>
-                {
-                    data.map((el)=>(
-                        <Product id={el.id} name={el.name} thumbnail={el.thumbnail} des={el.description} location={el.location} rating={el.rating} price={el.price}/>
-                    ))
-                }
-            </div>
-            <div style={{display:"flex", gap:"10px",justifyContent:"center", margin:"10px"}}>
-            <button  onClick={()=>{setCurrent(current-1)}}>{"<<<"}</button>
+   return (
+  <>
+    <div className="grid grid-cols-2 gap-[30px]">
+      {data.map((el) => (
+        <Product
+        all = {el}
+          id={el.id}
+          name={el.name}
+          thumbnail={el.thumbnail}
+          des={el.description}
+          location={el.location}
+          rating={el.rating}
+          price={el.price}
+        />
+      ))}
+    </div>
 
-            {
-                [...Array(no_of_pages)].keys().map((el)=>{
-                   if(el ==0 || el ==no_of_pages-1 || (el>=current-2&&el<=current+2)){
-                    return <button onClick={()=>{setCurrent(el) }} style={{backgroundColor:(current==el)?"#0A2947":"beige",color:(current==el)?"white":"black"}}>{el+1}</button>}
-                    else  { return <span>.</span>}
-                })
-            }
-            <button onClick={()=>{setCurrent(current+1)}}>{">>>"}</button>
+    <div className="flex justify-center gap-[10px] m-[10px]">
+      <button onClick={() => setCurrent(current - 1)}>
+        {"<<<"}
+      </button>
 
-            </div>
-            
-        </>
-    )
+      {[...Array(no_of_pages).keys()].map((el) => {
+        if (
+          el === 0 ||
+          el === no_of_pages - 1 ||
+          (el >= current - 2 && el <= current + 2)
+        ) {
+          return (
+            <button
+              onClick={() => setCurrent(el)}
+              className={
+                current === el
+                  ? "bg-[#0A2947] text-white px-3 py-1 rounded"
+                  : "bg-[beige] text-black px-3 py-1 rounded"
+              }
+            >
+              {el + 1}
+            </button>
+          );
+        } else {
+          return <span>.</span>;
+        }
+      })}
+
+      <button onClick={() => setCurrent(current + 1)}>
+        {">>>"}
+      </button>
+    </div>
+  </>
+)
 }
 
-export function Product({id ,name,thumbnail,des,location,rating,price}){
+export function Product({all,id ,name,thumbnail,des,location,rating,price}){
     const navigate= useNavigate()
+    const dispatch = useDispatch()
+    const [wishcount,setwish] = useState(true)
     // const id = useRef(0)
     function navigates() {navigate(`/products/${id}`)}
-    return(
-        <div style={{display:"flex",gap:"20px",border:"2px solid black",padding:"30px",borderRadius:"30px 0px 30px 0px ",backgroundColor:"beige",margin:"20px"}}>
-            <div>
-                <img  onClick={navigates } width="300px" height="350px"  src={thumbnail} alt="" />
-            </div>
-            <div style={{display:"flex",gap:"20px",flexDirection:"column",textAlign:"left"}}>
-                <h2  onClick={navigates}>{name}</h2>
-                <p onClick={navigates}>{des.slice(0,200)}...</p>
-                <div style={{display:"flex",justifyContent:"space-between"}}>
-                    <p>Location : {location}</p>
-                    <p><StarRating rating={rating}/></p>
-                </div>
-                <div style={{display:"flex",justifyContent:"space-between"}}>
-                    <p>Price :{price}</p>
-                    <button style={{backgroundColor:"white",color:"black",border:"none",padding:"10px 20px"}}>Move to WishList</button>
-                </div>
-            </div>
-        </div>
-    )
+   return (
+  <div className="flex gap-[20px] border-2 border-black p-[30px] rounded-[30px_0px_30px_0px] bg-[beige] m-[20px]">
+    <div>
+      <img
+        onClick={navigates}
+        className="w-[800px] h-[300px]"
+        src={thumbnail}
+        alt=""
+      />
+    </div>
+
+    <div className="flex flex-col gap-[20px] text-left">
+      <h2 className="font-black text-2xl" onClick={navigates}>{name}</h2>
+
+      <p onClick={navigates}>
+        {des.slice(0, 200)}...
+      </p>
+
+      <div className="flex justify-between">
+        <p>Location : {location}</p>
+        <p>
+          <StarRating rating={rating} />
+        </p>
+      </div>
+
+      <div className="flex justify-between">
+        <p className="font-extrabold">Price : {price}</p>
+
+        <button onClick={wishcount?()=>{dispatch(addtowish(all)
+        ); setwish(false) }:()=>{ dispatch(Remove(all)); setwish(true)}
+        }  className={`${wishcount ? "bg-blue-700 font-black" : "bg-red-700"} ${wishcount ? "text-black" : "text-white"} border-none px-[20px] py-[10px]`}>
+         {(wishcount)?"MOVE TO WISHLIST":"remove from WISHLIST"}
+        </button>
+      </div>
+    </div>
+  </div>
+)
 }
 
 // import { IoStarSharp } from "react-icons/io5";
