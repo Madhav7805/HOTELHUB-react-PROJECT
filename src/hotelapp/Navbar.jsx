@@ -12,16 +12,17 @@ export default function Navbar(){
     
 
     return(
-        <div className="font-extrabold" style={{color:"white",display:"flex", height:"150px",backgroundColor:"#0A2947" ,margin:"0px",justifyContent:"space-evenly", alignItems:"center"}}>
-        <img src={vite} alt="logo" />
+        <div className="font-black bg-black  m-0 shadow-2xl shadow-amber-800 fixed w-400 z-1" style={{color:"white",display:"flex", height:"100px",opacity:"0.3" ,justifyContent:"space-evenly", alignItems:"center"}}>
+        {/* <img src={vite} alt="logo" /> */}
         {/* <input style={{height:"50px", width:"600px",borderRadius:"20px 0px 20px 0px",border:"2px solid black"}}type="text" placeholder="search your hotel" />
          */}
-         <h1 onClick={()=>{navigates()}} style={{fontSize:"4rem"}}>HOTELHUB</h1>
-        <Link style={{color:"white"}} to="/Hotels"><div className="font-extrabold" style={{borderRadius:"10px 0px 10px 0px",backgroundColor:"beige",color:"black",padding:"15px"}}>hotels</div></Link>
-        <Link className="flex gap-1"style={{color:"white"}}to="/Wishlist"><div style={{borderRadius:"10px 0px 10px 0px",backgroundColor:"beige",color:"black",padding:"15px"}}>wishlist
-            <button className="bg-amber-100 w-max m-1 rounded-2xl text-black">({count})</button>
+        <div><h1 onClick={()=>{navigates()}}  className="shadow-amber-600 shadow-2xs text-6xl">HOTELHUB</h1></div> 
+       <div className="flex gap-20"> <Link className="flex gap-1 "style={{color:"white"}}to="/Wishlist"><div style={{borderRadius:"10px 0px 10px 0px",color:"white", fontSize:"xx-large"}}>wishlist
+            <button className=" w-max m-1 ">({count})</button></div></Link>
+        <Link style={{color:"white"}} to="/Hotels"><div className="font-extrabold" style={{borderRadius:"10px 0px 10px 0px",color:"white", fontSize:"xx-large"}}>hotels
+            
         </div></Link>
-        <Link style={{color:"white"}}to="/Contact"><div style={{borderRadius:"10px 0px 10px 0px",backgroundColor:"beige",color:"black",padding:"15px"}}>contact</div></Link>
+        <Link style={{color:"white"}}to="/Contact"><div style={{borderRadius:"10px 0px 10px 0px",color:"white", fontSize:"xx-large"}}>contact</div></Link></div>
 
         </div>
     )

@@ -8,6 +8,7 @@ import Hotels from "./hotels"
 import  Products from "./Products"
 import Wishlist from "./Wishlist"
 import Contact from "./Contact"
+import Search from './Searchotel'
 export default function Routing(){
 
     return (
@@ -20,6 +21,7 @@ export default function Routing(){
         <Route path="/Wishlist" element={<Wishlist/>}></Route>
         <Route path="/Contact" element={<Contact/>}></Route>
         <Route path="/products/:id" element={<Products/>}> </Route>
+        <Route path="/search" element={<Search/>}> </Route>
     </Routes>
     </BrowserRouter>
         </>

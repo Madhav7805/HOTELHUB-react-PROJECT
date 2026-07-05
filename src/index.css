@@ -14,25 +14,13 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background: linear-gradient(to right, #0A2947, beige);
+  /* background: linear-gradient(to right, #0A2947, beige); */
+  /* background-image: url(./assets/hotelbg.jpg); */
+  background-size: cover;
+  background-repeat: no-repeat;
   animation: gradient 10s ease infinite;
 }
-@keyframes gradient {
-  0%{
-  background: linear-gradient(45deg, #0A2947, beige);
 
-  }
-  50%{
-  background: linear-gradient(135deg, #0A2947, beige);
-
-  }
-  100%{
-  background: linear-gradient(225deg, #0A2947, beige);
-
-  }
-
-  
-}
 
 
 

@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit"
 const initialState = {
  hotels:[]
 };
+
 const wishlist = createSlice({
     name:"hotels",initialState,
     reducers:{
@@ -15,3 +16,4 @@ const wishlist = createSlice({
 })
 export const{addtowish,Remove} = wishlist.actions;
 export default wishlist.reducer;
+

@@ -1,9 +1,10 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addtowish ,Remove} from "./redux/wishlist";
 
 // import { IoStarSharp } from "react-icons/io5";
+    // const [wishcount,setwish] = useState(true)
 
 export default function ProductsListings(){
     let [current,setCurrent]=useState(0);
@@ -86,6 +87,15 @@ export function Product({all,id ,name,thumbnail,des,location,rating,price}){
     const navigate= useNavigate()
     const dispatch = useDispatch()
     const [wishcount,setwish] = useState(true)
+    const data = useSelector((State)=>State.Hotels.hotels)
+    console.log(data)
+    useEffect(()=>{
+     const value=data.some((item)=>item.id===id)
+      if(value){
+      setwish(false)
+    }
+    else setwish(true)
+    },[data,id]);
     // const id = useRef(0)
     function navigates() {navigate(`/products/${id}`)}
    return (
