@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { addtowish ,Remove} from "../redux/wishlist";
-import Cityhotel from "./Cityhotel";
+import Cityhotel2 from "./Cityhotel2";
 
 
 
@@ -14,7 +14,7 @@ export default function Search(){
     if(data.length!=0){
     return(
         <div>
-                    <Cityhotel city={`${data[0].location}`}/>
+                    <Cityhotel2 city={`${data[0].location}`}/>
      </div>
     )
 }

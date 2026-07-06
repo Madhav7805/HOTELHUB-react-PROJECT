@@ -2,13 +2,16 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { addtowish ,Remove} from "../redux/wishlist";
+import { useNavigate } from "react-router-dom";
 
 
 
-export default function Cityhotel({city}){
+
+export default function Cityhotel2({city}){
     const [wishcount,setwish] = useState(true)
     const dispatch = useDispatch()
     const data = useSelector((State)=>State.Hotels.hotels)
+    const navigate=useNavigate()
     
 
     let [hdata,setdata] =useState([])
@@ -46,18 +49,19 @@ export default function Cityhotel({city}){
     
     return(
         <>
-        <h1 className={`font-black text-red-800 text-8xl font-sans opacity-80 relative right-120 bottom-380`}>{city}</h1>
-        <div className={` bg-linear-t from-orange-400 to-yellow-300 grid grid-cols-2 overflow-y-auto relative bottom-390 scroll-smooth rounded-2xl
- scrollbar-hide  px-10 shadow-2xl shadow-blue-800 scroll-py-0 w-350 h-100 left-20 border-red-800 border-0 mt-20`}  >
+        <h1 className={`font-black text-red-800 text-8xl font-sans opacity-80 relative right-120 bottom-400`}>{city}</h1>
+        <div className="grid grid-cols-2 justify-around items-center ml-20" >
  
             {hdata.map((el)=>{
+                function navigates() {navigate(`/products/${el.name}`)}
+
                 let isin =!( data.some((it)=>it.id==el.id))
                 return(
-                         <div className="w-150 h-90 flex shrink-0 bg-amber-100  rounded-tl-2xl rounded-br-2xl m-3 ">
-                                        <img  className="h-80 w-70 m-2" src={el.thumbnail} alt="" />
-                                        <div className="p-5 flex flex-col gap-5">
-                                            <h1 className="font-black text-xl">{el.name}</h1>
-                                            <h1 className="font-bold">{el.description.slice(0,100)}...</h1>
+                         <div className="w-150 h-90 flex shrink-0 bg-amber-100  rounded-2xl rounded-br-2xl m-3 ">
+                                        <img onClick={navigates} className="h-80 w-70 m-2" src={el.thumbnail} alt="" />
+                                        <div  className="p-5 flex flex-col gap-5">
+                                            <h1 onClick={navigates} className="font-black text-xl">{el.name}</h1>
+                                            <h1 onClick={navigates} className="font-bold">{el.description.slice(0,100)}...</h1>
                                             <div className="flex m-3 justify-between font-black text-xl">
                                             <h1>{StarRating(el.rating)}</h1>
                                             </div>

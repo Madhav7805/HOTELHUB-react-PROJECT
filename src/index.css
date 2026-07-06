@@ -14,7 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  /* background: linear-gradient(to right, #0A2947, beige); */
+  background: linear-gradient(to right, #0A2947, beige);
   /* background-image: url(./assets/hotelbg.jpg); */
   background-size: cover;
   background-repeat: no-repeat;

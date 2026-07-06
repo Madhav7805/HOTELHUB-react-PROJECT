@@ -24,6 +24,7 @@ export default function Home(){
     let [groom, setgroom]=useState("")
     let navigate= useNavigate()
     
+    
     let idata = {checkin,checkout,location,groom }
 
 
@@ -57,7 +58,7 @@ export default function Home(){
     // let hotels=useSelector((state)=>state.Hotels.hotels)
     return(
       <>
-        <div className=" flex flex-cols  bg-cover h-600 items-center justify-between text-center  overflow-y-auto bg-fixed z-0"
+        <div className=" flex flex-cols  bg-cover h-600 items-center justify-between text-center  overflow-y-auto bg-fixed z-0 mt-25 scroll-py-20"
         style={{backgroundImage:`url(${hotelbg})` }}
        >
             {/* <div
@@ -70,7 +71,7 @@ export default function Home(){
             </div>
 
             <div
-                className="absolute top-[380px] left-[400px] flex  gap-[10px]
+                className="absolute top-[430px] left-[400px] flex  gap-[10px]
                 h-[90px] rounded-[20px] bg-black items-center w-200 justify-evenly opacity-80 shadow-2xl shadow-amber-700"  >
                 {/* <input
                 className="bg-linear-65 from-purple-500 to-pink-500 w-[600px] h-[50px] rounded-t-[20px] z-1"
@@ -160,7 +161,7 @@ export default function Home(){
       search
       </button>
   </div>
- <h1 className="font-black text-blue-600 text-8xl font-sans opacity-80 absolute left-15 top-150">NOIDA</h1>
+ <h1 className="font-black text-blue-600 text-8xl font-sans opacity-80 absolute left-15 top-170">NOIDA</h1>
                   
 </div>
 <div className="  flex overflow-x-auto relative bottom-420 scroll-smooth
@@ -168,12 +169,13 @@ export default function Home(){
  
             {hdata.map((el)=>{
                 let isin =!( data.some((it)=>it.id==el.id))
+                function navigates() {navigate(`/products/${el.name}`)}
                           return(
-                         <div className="w-110 h-80 flex shrink-0 bg-amber-100  rounded-tl-2xl rounded-br-2xl m-3 ">
-                                        <img  className="h-70 w-40 m-2" src={el.thumbnail} alt="" />
+                         <div className="w-110 h-80 flex shrink-0 bg-amber-100  rounded-tl-2xl rounded-br-2xl m-3  ">
+                                        <img onClick={navigates} className="h-70 w-40 m-2" src={el.thumbnail} alt="" />
                                         <div className="p-5 flex flex-col gap-5">
-                                            <h1 className="font-black text-xl">{el.name}</h1>
-                                            <h1>{el.description.slice(0,80)}...</h1>
+                                            <h1 onClick={navigates} className="font-black text-xl">{el.name}</h1>
+                                            <h1 onClick={navigates}>{el.description.slice(0,80)}...</h1>
                                             <div className="flex m-3 justify-between"><h1 className="font-black">{el.price}</h1>
                                             <h1>{StarRating(el.rating)}</h1>
                                             </div>
@@ -189,8 +191,8 @@ export default function Home(){
             </div>
 
             {/* <Cityhotel city="Noida" color="red"/> */}
-            
-            <Cityhotel city="MUMBAI"  className="relative bottom-700 top-100"/>
+          
+            <Cityhotel city="MUMBAI"  className="relative bottom-700 top-100 "/>
 </>
     )
 

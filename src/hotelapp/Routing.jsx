@@ -20,7 +20,7 @@ export default function Routing(){
         <Route path="/Hotels" element={<Hotels/>}></Route>
         <Route path="/Wishlist" element={<Wishlist/>}></Route>
         <Route path="/Contact" element={<Contact/>}></Route>
-        <Route path="/products/:id" element={<Products/>}> </Route>
+        <Route path="/products/:name" element={<Products/>}> </Route>
         <Route path="/search" element={<Search/>}> </Route>
     </Routes>
     </BrowserRouter>

@@ -32,7 +32,7 @@ export default function ProductsListings(){
     let end=start+PAGE_SIZE
    return (
   <>
-    <div className="grid grid-cols-2 gap-[30px]">
+    <div className="grid grid-cols-2 gap-[30px] mt-50">
       {data.map((el) => (
         <Product
         all = {el}
@@ -97,7 +97,7 @@ export function Product({all,id ,name,thumbnail,des,location,rating,price}){
     else setwish(true)
     },[data,id]);
     // const id = useRef(0)
-    function navigates() {navigate(`/products/${id}`)}
+    function navigates() {navigate(`/products/${name}`)}
    return (
   <div className="flex gap-[20px] border-2 border-black p-[30px] rounded-[30px_0px_30px_0px] bg-[beige] m-[20px]">
     <div>
